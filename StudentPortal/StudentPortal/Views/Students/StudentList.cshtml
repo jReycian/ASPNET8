@@ -1,0 +1,52 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model List<StudentPortal.Models.Entities.Student>
+<div class="bg-light p-5 border-5">
+    <h1 class="text-uppercase fw-bolder">
+        List of Student
+    </h1>
+    <br />
+    <h6 class="fw-bolder text-uppercase font-monospace">
+        <a asp-action="Add" class="text-decoration-none">ADD NEW STUDENT</a> |  <a asp-action="StudentList" class="text-decoration-none">BACK TO LIST</a>
+    </h6>
+    @* asp-controller="Students" method="get" *@
+
+    <form asp-action="StudentList" asp-controller="Students">
+        <div class="input-group w-25">
+            <input type="text" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" name="searchString" />
+            <button type="submit" class="btn btn-outline-primary text-uppercase" data-mdb-ripple-init>search</button>
+        </div>
+    </form>
+
+    <hr />
+
+    <table class="table table-striped">
+        <thead class="text-uppercase fw-bolder font-monospace">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Contact Number</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in Model)
+            {
+                <tr>
+                    <td>@student.Id</td>
+                    <td>@student.Name</td>
+                    <td>@student.Email</td>
+                    <td>@student.Phone</td>
+                    <td>
+                        <a class="btn btn-warning" asp-controller="Students" asp-action="Edit" asp-route-id="@student.Id">Edit</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
